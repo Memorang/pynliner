@@ -39,11 +39,11 @@ from .soupselect import select
 
 try:
     from urllib.parse import urljoin
-    from urllib.request import urlopen
     unicode = str
 except ImportError:
     from urlparse import urljoin
-    from urllib2 import urlopen
+
+import requests
 
 __version__ = "0.7.2"
 
@@ -153,7 +153,7 @@ class Pynliner(object):
     def _get_url(self, url):
         """Returns the response content from the given url
         """
-        return urlopen(url).read()
+        return requests.get(url).content
 
     def _substitute_entities(self):
         """
